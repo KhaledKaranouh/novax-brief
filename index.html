@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0258)file:///Users/khaledkaranouhprarabia/Library/Application%20Support/Claude/local-agent-mode-sessions/1b432a9c-b3cb-4cda-aa89-3c4a93b25424/41daea79-16b6-489c-87a5-ff2431aa060d/local_1b40c7e4-231d-4a40-8213-70bf8165df56/outputs/NovaX-Briefing-Questionnaire.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaX — Briefing Questionnaire</title>
+<style>
+  :root{
+    --navy:#0d1b2a; --navy2:#1b2a41; --accent:#2e6fdb; --accent-soft:#e8f0fd;
+    --ink:#1a2332; --muted:#5b6878; --line:#dde3ea; --bg:#f4f6f9; --white:#fff;
+    --ok:#1d7a4f; --warn:#b35a00;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.55; font-size:16px;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px 80px;}
+  header{background:var(--navy); color:#fff; padding:40px 20px 32px;}
+  header .inner{max-width:860px; margin:0 auto;}
+  header h1{font-size:26px; font-weight:700; letter-spacing:.2px;}
+  header p{color:#b8c4d4; margin-top:10px; max-width:640px; font-size:15px;}
+  header .meta{margin-top:16px; font-size:13px; color:#8fa1b8;}
+  .progress-bar{position:sticky; top:0; z-index:50; background:var(--white); border-bottom:1px solid var(--line); padding:10px 20px;}
+  .progress-inner{max-width:860px; margin:0 auto; display:flex; align-items:center; gap:14px;}
+  .track{flex:1; height:8px; background:var(--line); border-radius:4px; overflow:hidden;}
+  .fill{height:100%; width:0%; background:var(--accent); border-radius:4px; transition:width .3s;}
+  .count{font-size:13px; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .section{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .sec-num{font-size:13px; font-weight:700; color:var(--accent); letter-spacing:1px;}
+  .sec-title{font-size:20px; font-weight:700;}
+  .sec-why{font-size:14px; color:var(--muted); margin-bottom:16px; max-width:680px;}
+  .q{background:var(--white); border:1px solid var(--line); border-radius:10px; padding:22px 24px; margin-bottom:14px;}
+  .q.answered{border-left:4px solid var(--ok); padding-left:21px;}
+  .q-label{font-weight:600; font-size:16px; margin-bottom:4px;}
+  .q-hint{font-size:13.5px; color:var(--muted); margin-bottom:14px;}
+  .q-num{color:var(--accent); font-weight:700; margin-right:6px;}
+  .opts{display:flex; flex-direction:column; gap:8px;}
+  .opt-group{font-size:12.5px; font-weight:700; color:var(--muted); letter-spacing:.8px; text-transform:uppercase; margin-top:10px;}
+  .opt-group:first-child{margin-top:0;}
+  .opt{display:flex; align-items:flex-start; gap:10px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; cursor:pointer; transition:background .15s,border-color .15s; font-size:15px;}
+  .opt:hover{background:var(--accent-soft);}
+  .opt input{margin-top:3px; accent-color:var(--accent); flex-shrink:0;}
+  .opt.sel{background:var(--accent-soft); border-color:var(--accent);}
+  .opt small{display:block; color:var(--muted); font-size:13px; margin-top:2px;}
+  textarea, input[type=text]{width:100%; border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-family:inherit; font-size:15px; resize:vertical; background:#fbfcfe;}
+  textarea:focus, input[type=text]:focus{outline:2px solid var(--accent); border-color:transparent;}
+  textarea{min-height:80px;}
+  .other-row{margin-top:10px;}
+  .other-row label{font-size:13px; color:var(--muted); display:block; margin-bottom:4px;}
+  .rank-list{display:flex; flex-direction:column; gap:8px;}
+  .rank-item{display:flex; align-items:center; gap:12px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; cursor:pointer; background:var(--white); font-size:15px;}
+  .rank-item:hover{background:var(--accent-soft);}
+  .rank-badge{width:28px; height:28px; border-radius:50%; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--muted); flex-shrink:0;}
+  .rank-item.picked .rank-badge{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .rank-reset{margin-top:8px; font-size:13px; color:var(--accent); background:none; border:none; cursor:pointer; text-decoration:underline; padding:0;}
+  .partner-block{border:1px dashed var(--line); border-radius:8px; padding:14px; margin-bottom:12px;}
+  .partner-block h4{font-size:14px; color:var(--muted); margin-bottom:8px; font-weight:600;}
+  .partner-block .grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;}
+  @media(max-width:600px){.partner-block .grid{grid-template-columns:1fr;}}
+  .add-btn{background:var(--white); border:1px solid var(--accent); color:var(--accent); border-radius:8px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600;}
+  .add-btn:hover{background:var(--accent-soft);}
+  .export{margin-top:48px; background:var(--navy); color:#fff; border-radius:12px; padding:32px 28px;}
+  .export h2{font-size:20px; margin-bottom:8px;}
+  .export p{color:#b8c4d4; font-size:14.5px; margin-bottom:18px; max-width:620px;}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{border:none; border-radius:8px; padding:12px 22px; font-size:15px; font-weight:600; cursor:pointer;}
+  .btn-primary{background:var(--accent); color:#fff;}
+  .btn-primary:hover{background:#2159b8;}
+  .btn-ghost{background:transparent; color:#fff; border:1px solid #46586f;}
+  .btn-ghost:hover{border-color:#fff;}
+  .missing-note{margin-top:14px; font-size:14px; color:#ffcf99; display:none;}
+  .copied{margin-top:14px; font-size:14px; color:#7fe0ae; display:none;}
+  .save-note{font-size:12.5px; color:#8fa1b8; margin-top:16px;}
+  .intro-note{background:var(--accent-soft); border:1px solid #c3d7f7; border-radius:10px; padding:16px 20px; margin-top:28px; font-size:14.5px; color:var(--navy2);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>NovaX — Company Briefing Questionnaire</h1>
+    <p>23 questions. Most are click-and-go. Your answers become the company profile and the website — nothing gets written that doesn't come from this document. Where you're not sure, say "not sure" in the text box. A wrong guess here becomes a wrong claim in a prequalification file.</p>
+    <div class="meta">Estimated time: 25–35 minutes. Section 1 (your track record) needs the most thought — everything else is fast.</div>
+  </div>
+</header>
+
+<div class="progress-bar">
+  <div class="progress-inner">
+    <div class="track"><div class="fill" id="fill" style="width: 0%;"></div></div>
+    <div class="count" id="count">0 / 23 answered</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="intro-note">
+  <strong>How to use this:</strong> answer in any order, skip and come back. Your answers save automatically in this browser on this computer. When done, press <strong>Download my answers</strong> at the bottom and send the file back. If anything looks wrong or missing in the options, use the "Other" box — don't force a wrong answer.
+</div>
+
+<!-- ============ SECTION 1 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 1 / 7</span><span class="sec-title">The partners' track record</span></div>
+  <p class="sec-why">This is the core of the whole exercise. NovaX has no history — the partners do. Every credibility claim in the profile traces back to what you write here. Be precise. Only include what you would defend across the table from a procurement committee.</p>
+
+  <div class="q" data-q="1">
+    <div class="q-label"><span class="q-num">1.</span>The partners — name, role at NovaX, and career before NovaX.</div>
+    <div class="q-hint">For each: previous employers, job titles, and years. Exactly as it should appear in a prequalification file.</div>
+    <div id="partners">
+      <div class="partner-block">
+        <h4>Partner 1</h4>
+        <div class="grid">
+          <input type="text" placeholder="Full name">
+          <input type="text" placeholder="Role at NovaX (e.g. Managing Partner, GM)">
+        </div>
+        <textarea placeholder="Career before NovaX: employers, titles, years. e.g. 2015–2024 Project Director, [Company], responsible for O&amp;M across [sector]"></textarea>
+      </div>
+      <div class="partner-block">
+        <h4>Partner 2</h4>
+        <div class="grid">
+          <input type="text" placeholder="Full name">
+          <input type="text" placeholder="Role at NovaX">
+        </div>
+        <textarea placeholder="Career before NovaX"></textarea>
+      </div>
+    </div>
+    <button class="add-btn" onclick="addPartner()">+ Add another partner</button>
+  </div>
+
+  <div class="q" data-q="2">
+    <div class="q-label"><span class="q-num">2.</span>The specific projects. Which projects did the partners work on, in what role, at what scale?</div>
+    <div class="q-hint">Scale means numbers a buyer checks: contract value, built-up area, workforce managed, number of assets. If a number is an estimate, write "approx." next to it.</div>
+    <textarea style="min-height:140px" placeholder="One line per project:
+Project name — partner&#39;s role — employer at the time — years — scale (value / m² / headcount managed)
+e.g. [Giga-project name], Facilities Director, [employer], 2021–2024, managed O&amp;M for 40+ buildings, 600-person workforce"></textarea>
+  </div>
+
+  <div class="q" data-q="3">
+    <div class="q-label"><span class="q-num">3.</span>Why does NovaX exist? The partners left senior positions to start this — what did they see?</div>
+    <div class="q-hint">This becomes the company story. Answer like you're explaining it to a client over coffee, not writing a brochure.</div>
+    <div class="opts" data-type="multi">
+      <label class="opt"><input type="checkbox" value="A quality gap - existing providers deliver below what projects need"> A quality gap — existing providers deliver below what these projects need</label>
+      <label class="opt"><input type="checkbox" value="Demand outgrowing supply - giga-projects need more capable FM than the market has"> Demand outgrowing supply — giga-projects need more capable FM than the market has</label>
+      <label class="opt"><input type="checkbox" value="Clients asked us directly - relationships wanted us independent"> Clients asked us directly — people we worked with wanted us independent</label>
+      <label class="opt"><input type="checkbox" value="We ran FM for others and wanted to build it right, on our own terms"> We ran FM for others and wanted to build it right, on our own terms</label>
+    </div>
+    <div class="other-row"><label>In your own words — the real reason:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="4">
+    <div class="q-label"><span class="q-num">4.</span>Can you provide CVs, completion certificates, or reference letters that back up the track record?</div>
+    <div class="q-hint">Classification and prequalification files ask for evidence, not statements. What exists on paper?</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q4" value="Yes - CVs and supporting documents available now"> Yes — CVs and supporting documents available now</label>
+      <label class="opt"><input type="radio" name="q4" value="CVs yes, project evidence needs collecting"> CVs yes — project evidence needs collecting</label>
+      <label class="opt"><input type="radio" name="q4" value="Will take time to assemble"> Will take time to assemble</label>
+      <label class="opt"><input type="radio" name="q4" value="Mostly not available in writing"> Mostly not available in writing</label>
+    </div>
+    <div class="other-row"><label>Notes:</label><textarea placeholder=""></textarea></div>
+  </div>
+</div>
+
+<!-- ============ SECTION 2 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 2 / 7</span><span class="sec-title">Services</span></div>
+  <p class="sec-why">The profile must separate what NovaX delivers today from what it plans to deliver. Mixing the two is how new companies get disqualified.</p>
+
+  <div class="q" data-q="5">
+    <div class="q-label"><span class="q-num">5.</span>What can NovaX deliver today, with current staff and equipment, if a contract started Monday?</div>
+    <div class="q-hint">Tick only what's real. Anything you'd deliver through a subcontractor still counts — the delivery model comes next.</div>
+    <div class="opts" data-type="multi">
+      <div class="opt-group">Hard FM — technical</div>
+      <label class="opt"><input type="checkbox" value="[Hard] MEP maintenance (mechanical, electrical, plumbing)"> MEP maintenance (mechanical, electrical, plumbing)</label>
+      <label class="opt"><input type="checkbox" value="[Hard] HVAC operation and maintenance"> HVAC operation and maintenance</label>
+      <label class="opt"><input type="checkbox" value="[Hard] Electrical power systems - generators, UPS, switchgear"> Electrical power systems — generators, UPS, switchgear</label>
+      <label class="opt"><input type="checkbox" value="[Hard] Fire and life safety systems"> Fire and life safety systems</label>
+      <label class="opt"><input type="checkbox" value="[Hard] BMS operation and monitoring"> BMS operation and monitoring</label>
+      <label class="opt"><input type="checkbox" value="[Hard] Lifts and escalators - management / OEM coordination"> Lifts and escalators — management / OEM coordination</label>
+      <label class="opt"><input type="checkbox" value="[Hard] Civil, fit-out and fabric maintenance"> Civil, fit-out and building fabric maintenance</label>
+      <label class="opt"><input type="checkbox" value="[Hard] Water treatment and plumbing systems"> Water treatment and plumbing systems</label>
+      <div class="opt-group">Soft FM — support</div>
+      <label class="opt"><input type="checkbox" value="[Soft] Cleaning and housekeeping"> Cleaning and housekeeping</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Security services"> Security services</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Landscaping and irrigation"> Landscaping and irrigation</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Pest control"> Pest control</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Waste management"> Waste management</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Catering support services"> Catering support services</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Front-of-house - reception, mailroom, concierge"> Front-of-house — reception, mailroom, concierge</label>
+      <label class="opt"><input type="checkbox" value="[Soft] Façade and external cleaning"> Façade and external cleaning</label>
+      <div class="opt-group">Management &amp; integration</div>
+      <label class="opt"><input type="checkbox" value="[Mgmt] Helpdesk / CAFM-based work order management"> Helpdesk / CAFM-based work order management</label>
+      <label class="opt"><input type="checkbox" value="[Mgmt] Energy management"> Energy management</label>
+      <label class="opt"><input type="checkbox" value="[Mgmt] Asset management and condition surveys"> Asset management and condition surveys</label>
+      <label class="opt"><input type="checkbox" value="[Mgmt] Full integrated FM (single contract, hard + soft under one management)"> Full integrated FM — hard + soft under one contract and one management</label>
+    </div>
+    <div class="other-row"><label>Other services, or honest caveats on any ticked above:</label><textarea placeholder="e.g. HVAC yes up to district-cooling interface; specialist chiller work via subcontract"></textarea></div>
+  </div>
+
+  <div class="q" data-q="6">
+    <div class="q-label"><span class="q-num">6.</span>Delivery model in year one — own workforce or subcontractors?</div>
+    <div class="q-hint">Buyers ask this directly. The answer shapes how services are described.</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q6" value="Mostly self-delivery with own workforce"> Mostly self-delivery with own workforce</label>
+      <label class="opt"><input type="radio" name="q6" value="Core technical self-delivered, soft services subcontracted"> Core technical services self-delivered, soft services subcontracted</label>
+      <label class="opt"><input type="radio" name="q6" value="Soft services self-delivered, technical subcontracted"> Soft services self-delivered, technical subcontracted</label>
+      <label class="opt"><input type="radio" name="q6" value="Mostly subcontracted at first, building own workforce per contract"> Mostly subcontracted at first, building own workforce per contract</label>
+      <label class="opt"><input type="radio" name="q6" value="Depends on the contract"> Depends on the contract</label>
+    </div>
+    <div class="other-row"><label>Notes:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="7">
+    <div class="q-label"><span class="q-num">7.</span>If NovaX signed a contract tomorrow needing 100+ staff on site, how fast could you mobilize?</div>
+    <div class="q-hint">Buyers price mobilization risk on new companies heavily. Be realistic — visas, recruitment, equipment.</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q7" value="Within 30 days"> Within 30 days</label>
+      <label class="opt"><input type="radio" name="q7" value="Within 60 days"> Within 60 days</label>
+      <label class="opt"><input type="radio" name="q7" value="Within 90 days"> Within 90 days</label>
+      <label class="opt"><input type="radio" name="q7" value="Longer, or depends on visa availability"> Longer — or depends on visa availability</label>
+      <label class="opt"><input type="radio" name="q7" value="Haven&#39;t planned this yet"> Haven't planned this yet</label>
+    </div>
+    <div class="other-row"><label>How? (recruitment partners, visa quota status, taking over existing site staff, equipment suppliers):</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="8">
+    <div class="q-label"><span class="q-num">8.</span>What systems does NovaX actually have today — not planned, have?</div>
+    <div class="q-hint">If "technology" becomes part of the pitch, this is what stands behind it. A named system is a claim; an intention is not.</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q8" value="CAFM system licensed and running - name it below"> A CAFM system licensed and running — name it below</label>
+      <label class="opt"><input type="radio" name="q8" value="CAFM selected, purchase in progress"> CAFM selected, purchase in progress</label>
+      <label class="opt"><input type="radio" name="q8" value="Evaluating options now"> Evaluating options now</label>
+      <label class="opt"><input type="radio" name="q8" value="Spreadsheets and WhatsApp for now - honest answer"> Spreadsheets and WhatsApp for now — honest answer</label>
+    </div>
+    <div class="other-row"><label>System name, modules, and anything else real (dashboards, IoT sensors, mobile workforce app):</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="9">
+    <div class="q-label"><span class="q-num">9.</span>What is planned for the next 12–24 months but NOT real yet?</div>
+    <div class="q-hint">This goes on the "cannot say yet" side of the claims inventory so nobody accidentally writes it as fact.</div>
+    <textarea style="min-height:100px" placeholder="e.g. Full IFM contracts, CAFM platform rollout, specialist façade access team, Eastern Province branch"></textarea>
+  </div>
+</div>
+
+<!-- ============ SECTION 3 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 3 / 7</span><span class="sec-title">Target clients</span></div>
+  <p class="sec-why">Who the profile is written for. A document aimed at everyone convinces no one.</p>
+
+  <div class="q" data-q="10">
+    <div class="q-label"><span class="q-num">10.</span>Rank these client types by priority. Click in order — first click = priority 1.</div>
+    <div class="rank-list" id="rankList">
+      <div class="rank-item" data-val="Government entities (ministries, municipalities, authorities)"><span class="rank-badge">–</span> Government entities (ministries, municipalities, authorities)</div>
+      <div class="rank-item" data-val="Giga-projects (NEOM, Diriyah, Qiddiya, Red Sea)"><span class="rank-badge">–</span> Giga-projects (NEOM, Diriyah, Qiddiya, Red Sea)</div>
+      <div class="rank-item" data-val="Commercial developers and property owners"><span class="rank-badge">–</span> Commercial developers and property owners</div>
+      <div class="rank-item" data-val="Industrial facilities"><span class="rank-badge">–</span> Industrial facilities</div>
+      <div class="rank-item" data-val="Healthcare"><span class="rank-badge">–</span> Healthcare</div>
+      <div class="rank-item" data-val="Education"><span class="rank-badge">–</span> Education</div>
+    </div>
+    <button class="rank-reset" onclick="resetRank()">Reset ranking</button>
+    <div class="other-row"><label>Anything missing from the list, or notes:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="11">
+    <div class="q-label"><span class="q-num">11.</span>Realistically, where does the FIRST contract come from?</div>
+    <div class="q-hint">Not the ambition — the actual most likely first deal.</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q11" value="An existing relationship of one of the partners"> An existing relationship of one of the partners</label>
+      <label class="opt"><input type="radio" name="q11" value="Open tender on Etimad"> Open tender on Etimad</label>
+      <label class="opt"><input type="radio" name="q11" value="Subcontract under a larger FM company"> Subcontract under a larger FM company</label>
+      <label class="opt"><input type="radio" name="q11" value="Negotiated private-sector deal"> Negotiated private-sector deal</label>
+    </div>
+    <div class="other-row"><label>Detail if you can (sector, entity type, rough timing):</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="12">
+    <div class="q-label"><span class="q-num">12.</span>Where can NovaX deliver today, and where will you bid?</div>
+    <div class="q-hint">The profile needs "based in X, serving Y" — and it has to be true on mobilization day.</div>
+    <div class="opts" data-type="multi">
+      <label class="opt"><input type="checkbox" value="Riyadh and Central Region"> Riyadh and Central Region</label>
+      <label class="opt"><input type="checkbox" value="Jeddah / Makkah / Western Region"> Jeddah / Makkah / Western Region</label>
+      <label class="opt"><input type="checkbox" value="Eastern Province"> Eastern Province</label>
+      <label class="opt"><input type="checkbox" value="Giga-project sites (NEOM, Red Sea, AlUla, etc.)"> Giga-project sites (NEOM, Red Sea, AlUla, etc.)</label>
+      <label class="opt"><input type="checkbox" value="Kingdom-wide from day one"> Kingdom-wide from day one</label>
+    </div>
+    <div class="other-row"><label>Head office location, and where expansion comes later:</label><textarea placeholder="e.g. HQ Riyadh. Western Region only after first anchor contract there."></textarea></div>
+  </div>
+</div>
+
+<!-- ============ SECTION 4 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 4 / 7</span><span class="sec-title">Real differentiators</span></div>
+  <p class="sec-why">Every FM company says "quality" and "commitment". These questions dig for what NovaX can actually promise and keep.</p>
+
+  <div class="q" data-q="13">
+    <div class="q-label"><span class="q-num">13.</span>What do clients complain about with current FM providers? Tick what you've seen first-hand.</div>
+    <div class="opts" data-type="multi">
+      <label class="opt"><input type="checkbox" value="Slow response to breakdowns and requests"> Slow response to breakdowns and requests</label>
+      <label class="opt"><input type="checkbox" value="Senior team disappears after contract signing"> Senior team disappears after contract signing</label>
+      <label class="opt"><input type="checkbox" value="Hidden costs and constant variation orders"> Hidden costs and constant variation orders</label>
+      <label class="opt"><input type="checkbox" value="Poor workforce quality and high turnover"> Poor workforce quality and high turnover</label>
+      <label class="opt"><input type="checkbox" value="No real reporting - client can&#39;t see what&#39;s being done"> No real reporting — client can't see what's being done</label>
+      <label class="opt"><input type="checkbox" value="Overpromising in bids, underdelivering on site"> Overpromising in bids, underdelivering on site</label>
+      <label class="opt"><input type="checkbox" value="Everything subcontracted - no accountability"> Everything subcontracted — no accountability</label>
+    </div>
+    <div class="other-row"><label>Other complaints you've heard directly:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="14">
+    <div class="q-label"><span class="q-num">14.</span>Of the problems you just ticked — which will NovaX concretely fix, and how?</div>
+    <div class="q-hint">Specifics only. "Better service" is not an answer. A number, a named commitment, a structural choice is.</div>
+    <textarea style="min-height:110px" placeholder="e.g. Response: 4-hour attendance commitment for critical faults, written into contracts.
+Senior involvement: a partner personally chairs the monthly review on every account.
+Reporting: client gets live dashboard access, not a monthly PDF."></textarea>
+  </div>
+
+  <div class="q" data-q="15">
+    <div class="q-label"><span class="q-num">15.</span>Pick a maximum of THREE you can defend in a bid clarification meeting today.</div>
+    <div class="q-hint">If you tick more than three, the profile says nothing. These become the three pillars of the messaging.</div>
+    <div class="opts" data-type="multi" data-max="3">
+      <label class="opt"><input type="checkbox" value="Guaranteed response times, contractually committed"> Guaranteed response times, contractually committed</label>
+      <label class="opt"><input type="checkbox" value="Partners personally involved on every account"> Partners personally involved on every account</label>
+      <label class="opt"><input type="checkbox" value="Technology - CAFM, dashboards, transparent reporting"> Technology — CAFM, dashboards, transparent reporting</label>
+      <label class="opt"><input type="checkbox" value="Transparent pricing - no variation-order games"> Transparent pricing — no variation-order games</label>
+      <label class="opt"><input type="checkbox" value="Self-delivered workforce, directly employed and trained"> Self-delivered workforce, directly employed and trained</label>
+      <label class="opt"><input type="checkbox" value="Speed of mobilization"> Speed of mobilization</label>
+    </div>
+    <div class="other-row"><label>Other — something not on the list:</label><textarea placeholder=""></textarea></div>
+  </div>
+</div>
+
+<!-- ============ SECTION 5 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 5 / 7</span><span class="sec-title">The competition</span></div>
+  <p class="sec-why">Positioning is relative. Knowing who you lose to, and why, tells us where NovaX can honestly win.</p>
+
+  <div class="q" data-q="16">
+    <div class="q-label"><span class="q-num">16.</span>In year one, who do you expect to lose bids to?</div>
+    <div class="opts" data-type="multi">
+      <label class="opt"><input type="checkbox" value="Initial Saudi Group"> Initial Saudi Group</label>
+      <label class="opt"><input type="checkbox" value="Almajal (Allied Universal)"> Almajal (Allied Universal)</label>
+      <label class="opt"><input type="checkbox" value="ENGIE Solutions"> ENGIE Solutions</label>
+      <label class="opt"><input type="checkbox" value="Musanadah"> Musanadah</label>
+      <label class="opt"><input type="checkbox" value="Khidmah"> Khidmah</label>
+      <label class="opt"><input type="checkbox" value="SAMAMA"> SAMAMA</label>
+      <label class="opt"><input type="checkbox" value="EFS Facilities Services"> EFS Facilities Services</label>
+      <label class="opt"><input type="checkbox" value="Small local firms competing on price"> Small local firms competing on price</label>
+    </div>
+    <div class="other-row"><label>Others:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="17">
+    <div class="q-label"><span class="q-num">17.</span>Which company in the market do you actually respect — the one NovaX should operate like in 5 years?</div>
+    <textarea placeholder="Name the company and say what they do right. e.g. [Company] — they self-deliver, keep clients 10+ years, and their site teams are visibly better trained"></textarea>
+  </div>
+
+  <div class="q" data-q="18">
+    <div class="q-label"><span class="q-num">18.</span>Who overpromises? What do competitors say in bids or brochures that you refuse to copy?</div>
+    <div class="q-hint">This directly shapes the tone of voice — what NovaX will never sound like.</div>
+    <textarea placeholder="e.g. Everyone claims &#39;world-class integrated solutions&#39; with 30 staff. Claims of response times nobody measures."></textarea>
+  </div>
+</div>
+
+<!-- ============ SECTION 6 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 6 / 7</span><span class="sec-title">Ambition</span></div>
+  <p class="sec-why">The profile must aim where NovaX is going without claiming it's already there.</p>
+
+  <div class="q" data-q="19">
+    <div class="q-label"><span class="q-num">19.</span>What contract sizes should NovaX compete for in the first three years?</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q19" value="Under SAR 5M/year - build references first"> Under SAR 5M/year — build references first</label>
+      <label class="opt"><input type="radio" name="q19" value="SAR 5-20M/year"> SAR 5–20M/year</label>
+      <label class="opt"><input type="radio" name="q19" value="SAR 20-50M/year"> SAR 20–50M/year</label>
+      <label class="opt"><input type="radio" name="q19" value="SAR 50M+/year - going for major contracts early"> SAR 50M+/year — going for major contracts early</label>
+      <label class="opt"><input type="radio" name="q19" value="Start small, step up each year"> Start small, step up each year</label>
+    </div>
+    <div class="other-row"><label>Notes:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="20">
+    <div class="q-label"><span class="q-num">20.</span>Three years from now — what should NovaX be known as?</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q20" value="A recognized IFM contractor working on giga-projects"> A recognized IFM contractor working on giga-projects</label>
+      <label class="opt"><input type="radio" name="q20" value="A strong technical (hard FM) specialist in chosen sectors"> A strong technical (hard FM) specialist in chosen sectors</label>
+      <label class="opt"><input type="radio" name="q20" value="A large-workforce soft FM / support services provider"> A large-workforce soft FM / support services provider</label>
+      <label class="opt"><input type="radio" name="q20" value="A regional player attractive for acquisition or JV"> A regional player attractive for acquisition or JV</label>
+    </div>
+    <div class="other-row"><label>In your own words:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="21">
+    <div class="q-label"><span class="q-num">21.</span>Can NovaX issue bid bonds and performance bonds — and up to what contract size?</div>
+    <div class="q-hint">Government buyers shortlist on financial capacity. A company that can't bond can't sign. This sets the ceiling on Q19 — if the answers conflict, the profile targets the bondable number.</div>
+    <div class="opts" data-type="single">
+      <label class="opt"><input type="radio" name="q21" value="Yes - bank facilities in place"> Yes — bank facilities in place</label>
+      <label class="opt"><input type="radio" name="q21" value="In progress with a bank now"> In progress with a bank now</label>
+      <label class="opt"><input type="radio" name="q21" value="Shareholders back bonds case-by-case"> Shareholders will back bonds case-by-case</label>
+      <label class="opt"><input type="radio" name="q21" value="Not arranged yet"> Not arranged yet</label>
+    </div>
+    <div class="other-row"><label>Facility size / bank, if you can share (stays internal unless you approve otherwise):</label><textarea placeholder=""></textarea></div>
+  </div>
+</div>
+
+<!-- ============ SECTION 7 ============ -->
+<div class="section">
+  <div class="sec-head"><span class="sec-num">SECTION 7 / 7</span><span class="sec-title">Red lines</span></div>
+  <p class="sec-why">What never appears in NovaX materials, no matter who suggests it.</p>
+
+  <div class="q" data-q="22">
+    <div class="q-label"><span class="q-num">22.</span>Which of these do you refuse to see in NovaX materials?</div>
+    <div class="opts" data-type="multi">
+      <label class="opt"><input type="checkbox" value="&quot;Leading provider&quot; / &quot;market leader&quot; language"> "Leading provider" / "market leader" language</label>
+      <label class="opt"><input type="checkbox" value="&quot;World-class&quot; / &quot;best-in-class&quot;"> "World-class" / "best-in-class"</label>
+      <label class="opt"><input type="checkbox" value="&quot;Trusted by&quot; implying clients that do not exist"> "Trusted by…" implying clients that don't exist</label>
+      <label class="opt"><input type="checkbox" value="Anything implying NovaX itself has a track record"> Anything implying NovaX itself has a track record</label>
+      <label class="opt"><input type="checkbox" value="Inflated team or capacity numbers"> Inflated team or capacity numbers</label>
+      <label class="opt"><input type="checkbox" value="Stock-photo corporate style with no substance"> Stock-photo corporate style with no substance</label>
+    </div>
+    <div class="other-row"><label>Other words, claims, or styles you hate:</label><textarea placeholder=""></textarea></div>
+  </div>
+
+  <div class="q" data-q="23">
+    <div class="q-label"><span class="q-num">23.</span>What work or clients will NovaX NOT chase?</div>
+    <div class="q-hint">Saying no to the wrong work is part of the positioning.</div>
+    <div class="opts" data-type="multi">
+      <label class="opt"><input type="checkbox" value="Lowest-price tenders with no margin"> Lowest-price tenders where only price wins</label>
+      <label class="opt"><input type="checkbox" value="Manpower-supply-only contracts"> Manpower-supply-only contracts</label>
+      <label class="opt"><input type="checkbox" value="Contracts too large to deliver properly yet"> Contracts too large to deliver properly yet</label>
+      <label class="opt"><input type="checkbox" value="No exclusions - we look at everything"> No exclusions — we look at everything</label>
+    </div>
+    <div class="other-row"><label>Sectors, entities, or contract types to avoid, and why:</label><textarea placeholder=""></textarea></div>
+  </div>
+</div>
+
+<!-- ============ EXPORT ============ -->
+<div class="export">
+  <h2>Done? Send it back.</h2>
+  <p>Press the button below to download a text file of all your answers, then email it back or drop it in the chat. You can also copy everything to the clipboard and paste it into an email. Unanswered questions will be listed so nothing gets missed silently.</p>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="downloadAnswers()">Download my answers (.txt)</button>
+    <button class="btn btn-ghost" onclick="copyAnswers()">Copy to clipboard</button>
+  </div>
+  <div class="copied" id="copiedNote">Copied. Paste it into an email or the chat.</div>
+  <div class="missing-note" id="missingNote"></div>
+  <div class="save-note">Answers auto-save in this browser on this computer. They are not sent anywhere until you export and share the file yourself.</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var TOTAL = 23;
+  var LS_KEY = 'novax_brief_v2';
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch(e){ store = {}; }
+
+  function save(){ try { localStorage.setItem(LS_KEY, JSON.stringify(store)); } catch(e){} }
+
+  // ---- generic capture ----
+  function qEl(n){ return document.querySelector('.q[data-q="'+n+'"]'); }
+
+  function collectQ(n){
+    var q = qEl(n);
+    var data = { choices: [], texts: [] };
+    q.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').forEach(function(i){ data.choices.push(i.value); });
+    q.querySelectorAll('textarea, input[type=text]').forEach(function(t){ if(t.value.trim()) data.texts.push(t.value.trim()); });
+    if(n === 10){
+      data.choices = rankOrder.map(function(v,i){ return (i+1)+'. '+v; });
+    }
+    if(n === 1){
+      data.texts = [];
+      document.querySelectorAll('#partners .partner-block').forEach(function(b, idx){
+        var ins = b.querySelectorAll('input[type=text]');
+        var ta = b.querySelector('textarea');
+        var name = ins[0].value.trim(), role = ins[1].value.trim(), hist = ta.value.trim();
+        if(name || role || hist){
+          data.texts.push('Partner '+(idx+1)+': '+(name||'[name missing]')+' — '+(role||'[role missing]')+' — '+(hist||'[history missing]'));
+        }
+      });
+    }
+    return data;
+  }
+
+  function isAnswered(n){
+    var d = collectQ(n);
+    return d.choices.length > 0 || d.texts.length > 0;
+  }
+
+  function refresh(){
+    var done = 0;
+    for(var i=1;i<=TOTAL;i++){
+      var a = isAnswered(i);
+      qEl(i).classList.toggle('answered', a);
+      if(a) done++;
+    }
+    document.getElementById('fill').style.width = (done/TOTAL*100)+'%';
+    document.getElementById('count').textContent = done+' / '+TOTAL+' answered';
+    return done;
+  }
+
+  // ---- persistence: serialize all inputs ----
+  function snapshot(){
+    var s = { fields: [], rank: rankOrder };
+    document.querySelectorAll('.q input, .q textarea').forEach(function(el, idx){
+      if(el.type === 'checkbox' || el.type === 'radio'){ s.fields.push({i:idx, c:el.checked}); }
+      else { s.fields.push({i:idx, v:el.value}); }
+    });
+    s.partnerCount = document.querySelectorAll('#partners .partner-block').length;
+    return s;
+  }
+  function persist(){ store = snapshot(); save(); }
+
+  function restore(){
+    if(!store || !store.fields) return;
+    var extra = (store.partnerCount || 2) - 2;
+    for(var i=0;i<extra;i++) addPartnerSilent();
+    var els = document.querySelectorAll('.q input, .q textarea');
+    store.fields.forEach(function(f){
+      var el = els[f.i]; if(!el) return;
+      if('c' in f && (el.type==='checkbox'||el.type==='radio')) el.checked = f.c;
+      if('v' in f && el.type!=='checkbox' && el.type!=='radio') el.value = f.v;
+    });
+    if(store.rank && store.rank.length){ store.rank.forEach(function(v){ pickRank(v, true); }); }
+    document.querySelectorAll('.opt input').forEach(function(i){ i.closest('.opt').classList.toggle('sel', i.checked); });
+  }
+
+  // ---- option highlighting + max-3 rule ----
+  document.addEventListener('change', function(e){
+    var t = e.target;
+    if(t.matches('.opt input')){
+      var opts = t.closest('.opts');
+      if(t.type === 'radio'){
+        opts.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('sel'); });
+      }
+      if(t.type === 'checkbox' && opts.dataset.max){
+        var max = parseInt(opts.dataset.max, 10);
+        var checked = opts.querySelectorAll('input:checked').length;
+        if(checked > max){ t.checked = false; alert('Maximum '+max+' — deselect one first. Fewer, sharper claims win.'); return; }
+      }
+      t.closest('.opt').classList.toggle('sel', t.checked);
+    }
+    persist(); refresh();
+  });
+  document.addEventListener('input', function(e){
+    if(e.target.matches('textarea, input[type=text]')){ persist(); refresh(); }
+  });
+
+  // ---- ranking ----
+  var rankOrder = [];
+  window.pickRank = function(val, silent){
+    var item = document.querySelector('.rank-item[data-val="'+val.replace(/"/g,'\\"')+'"]');
+    if(!item || item.classList.contains('picked')) return;
+    rankOrder.push(val);
+    item.classList.add('picked');
+    item.querySelector('.rank-badge').textContent = rankOrder.length;
+    if(!silent){ persist(); refresh(); }
+  };
+  document.querySelectorAll('.rank-item').forEach(function(item){
+    item.addEventListener('click', function(){ pickRank(item.dataset.val); });
+  });
+  window.resetRank = function(){
+    rankOrder = [];
+    document.querySelectorAll('.rank-item').forEach(function(i){ i.classList.remove('picked'); i.querySelector('.rank-badge').textContent='–'; });
+    persist(); refresh();
+  };
+
+  // ---- partners ----
+  function addPartnerSilent(){
+    var container = document.getElementById('partners');
+    var count = container.children.length + 1;
+    var div = document.createElement('div');
+    div.className = 'partner-block';
+    div.innerHTML = '<h4>Partner '+count+'</h4><div class="grid"><input type="text" placeholder="Full name"><input type="text" placeholder="Role at NovaX"></div><textarea placeholder="Career before NovaX"></textarea>';
+    container.appendChild(div);
+  }
+  window.addPartner = function(){ addPartnerSilent(); persist(); };
+
+  // ---- export ----
+  var SECTIONS = {
+    1:'PARTNERS’ TRACK RECORD',5:'SERVICES',10:'TARGET CLIENTS',
+    13:'REAL DIFFERENTIATORS',16:'THE COMPETITION',19:'AMBITION',22:'RED LINES'
+  };
+  var LABELS = {};
+  document.querySelectorAll('.q').forEach(function(q){
+    LABELS[q.dataset.q] = q.querySelector('.q-label').textContent.trim();
+  });
+
+  function buildText(){
+    var lines = ['NOVAX BRIEFING QUESTIONNAIRE — ANSWERS','Completed: '+new Date().toLocaleDateString('en-GB'),''];
+    var missing = [];
+    for(var i=1;i<=TOTAL;i++){
+      if(SECTIONS[i]){ lines.push('====== '+SECTIONS[i]+' ======',''); }
+      var d = collectQ(i);
+      lines.push('Q'+LABELS[i].replace(/^\d+\./, i+'.'));
+      if(d.choices.length===0 && d.texts.length===0){
+        lines.push('  [NOT ANSWERED]'); missing.push(i);
+      } else {
+        d.choices.forEach(function(c){ lines.push('  • '+c); });
+        d.texts.forEach(function(t){ lines.push('  Note: '+t.replace(/\n/g,'\n        ')); });
+      }
+      lines.push('');
+    }
+    return { text: lines.join('\n'), missing: missing };
+  }
+
+  function flagMissing(missing){
+    var note = document.getElementById('missingNote');
+    if(missing.length){
+      note.style.display = 'block';
+      note.textContent = 'Still unanswered: question'+(missing.length>1?'s':'')+' '+missing.join(', ')+'. Exported anyway — they’re marked [NOT ANSWERED].';
+    } else { note.style.display = 'none'; }
+  }
+
+  window.downloadAnswers = function(){
+    var r = buildText(); flagMissing(r.missing);
+    var blob = new Blob([r.text], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'NovaX-Briefing-Answers.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  };
+
+  window.copyAnswers = function(){
+    var r = buildText(); flagMissing(r.missing);
+    function done(){ var c = document.getElementById('copiedNote'); c.style.display='block'; setTimeout(function(){c.style.display='none';},4000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(r.text).then(done, function(){ fallbackCopy(r.text); done(); });
+    } else { fallbackCopy(r.text); done(); }
+  };
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  restore();
+  refresh();
+})();
+</script>
+
+
+</body></html>
